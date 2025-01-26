@@ -1,0 +1,114 @@
+---
+title: Requests and Responses
+---
+
+## Requests
+
+### Encryption
+
+All requests must be sent using HTTPS with TLS 1.2 or higher. Please make sure your developer tools support this version of TLS as older versions or SSL are not supported for security reasons.
+
+### Headers
+
+All BSPK API calls must include the following headers to authenticate the request:
+
+| key           | value             | 
+|:--------------|:------------------|
+| Authorization | Bearer `API_KEY`  |
+
+
+
+## Responses
+
+Responses use the customary [HTTP status codes](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes), with the most typical ones being:
+
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colspan="2"><em>Successful Responses</em></td>
+    </tr>
+    <tr>
+      <td>200</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>201</td>
+      <td>OK</td>
+    </tr>
+    <tr>
+      <td>204</td>
+      <td>No content returned</td>
+    </tr>
+    <tr>
+      <td colspan="2"><em>Error Responses</em></td>
+    </tr>
+    <tr>
+      <td>400</td>
+      <td>Bad Request</td>
+    </tr>
+    <tr>
+      <td>401</td>
+      <td>Unauthorized</td>
+    </tr>
+    <tr>
+      <td>429</td>
+      <td>Too Many Requests</td>
+    </tr>
+    <tr>
+      <td>500</td>
+      <td>Internal Server Error</td>
+    </tr>
+  </tbody>
+</table>
+
+### Headers
+
+All BSPK API calls must respond with the following headers:
+
+<table>
+  <thead>
+    <tr>
+      <th>key</th>
+      <th>eg. value</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>X-RateLimit-Limit</td>
+      <td>
+        <code>30</code>
+      </td>
+      <td>Request limit per time window (10 seconds)</td>
+    </tr>
+    <tr>
+      <td>X-RateLimit-Remaining</td>
+      <td>
+        <code>1</code>
+      </td>
+      <td>The number of requests left for the 10 seconds window</td>
+    </tr>
+    <tr>
+      <td>X-Total-Count</td>
+      <td>
+        <code>123</code>
+      </td>
+      <td>Total number of records found</td>
+    </tr>
+    <tr>
+      <td>Link</td>
+      <td>
+        <code>&lt;https://api.bspk.com/api/extraction/v1/emails.json?page=2&gt;; rel='next', &lt;https://api.bspk.com/api/extraction/v1/emails.json?page=18&gt;; rel='last'</code>
+      </td>
+      <td>Links for the last and next pages</td>
+    </tr>
+  </tbody>
+</table>
+
+If an endpoint doesn't support pagination (eg.: `https://api.bspk.com/api/extraction/v1/ideabook_actions`) the pagination related headers will be omitted.

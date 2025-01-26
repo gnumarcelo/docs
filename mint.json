@@ -7,12 +7,16 @@
   },
   "favicon": "/favicon.svg",
   "colors": {
-    "primary": "#0D9373",
-    "light": "#07C983",
-    "dark": "#0D9373",
+    "primary": "#171717",
+    "light": "#d4a27f", 
+    "dark": "#171717",
+    "background": {
+      "light": "#fdfdf8",
+      "dark": "#09090b"
+    },
     "anchors": {
-      "from": "#0D9373",
-      "to": "#07C983"
+      "from": "#09090b",
+      "to": "#09090b"
     }
   },
   "topbarLinks": [
@@ -69,17 +73,109 @@
       ]
     },
     {
-      "group": "API Documentation",
+      "group": "Using the API",
       "pages": [
-        "api-reference/introduction"
+        "api-reference/getting-started",
+        "api-reference/schema-and-versioning",
+        "api-reference/authentication",
+        "api-reference/requests-and-responses",
+        "api-reference/pagination",
+        "api-reference/rate-limiting",
+        "api-reference/support"
       ]
     },
     {
-      "group": "Endpoint Examples",
+      "group": "Platform API",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+        {
+          "group": "Clients",
+          "pages": [
+            "api-reference/endpoint/platform-api/clients/creates-or-updates-a-client-shopper-in-bspk",
+            "api-reference/endpoint/platform-api/clients/merges-a-client-to-another-client",
+            "api-reference/endpoint/platform-api/clients/links-a-bspk-client-with-a-client-in-an-external-backend-system",
+            "api-reference/endpoint/platform-api/clients/removes-the-link-from-a-bspk-client-with-a-client-in-an-external-backend-system"
+          ]
+        },
+        {
+          "group": "Sales",
+          "pages": [
+            "api-reference/endpoint/platform-api/sales/creates-or-updates-a-sale-in-bspk"
+          ]
+        },
+        {
+          "group": "Webhooks",
+          "pages": [
+            "api-reference/endpoint/platform-api/webhooks/creates-a-webhook-endpoint",
+            "api-reference/endpoint/platform-api/webhooks/delete-a-webhook-endpoint",
+            "api-reference/endpoint/platform-api/webhooks/updates-a-webhook-endpoint",
+            "api-reference/endpoint/platform-api/webhooks/list-webhook-endpoints"
+          ]
+        }    
+      ]
+    },
+    {
+      "group": "Extraction API",
+      "pages": [
+        {
+          "group": "Appointments",
+          "pages": [
+            "api-reference/endpoint/extraction-api/appointments/list-appointments"
+          ]
+        },
+        {
+          "group": "Calls",
+          "pages": [
+            "api-reference/endpoint/extraction-api/calls/list-calls"
+          ]
+        },
+        {
+          "group": "Clients",
+          "pages": [
+            "api-reference/endpoint/extraction-api/clients/list-clients"
+          ]
+        },
+        {
+          "group": "Emails",
+          "pages": [
+            "api-reference/endpoint/extraction-api/emails/list-emails"
+          ]
+        },
+        {
+          "group": "Ideabook",
+          "pages": [
+            "api-reference/endpoint/extraction-api/ideabook/get-clients-ideabook-actions-likes-dislikes-wishlists"
+          ]
+        },
+        {
+          "group": "Messages",
+          "pages": [
+            "api-reference/endpoint/extraction-api/messages/list-messages"
+          ]
+        },
+        {
+          "group": "Notes",
+          "pages": [
+            "api-reference/endpoint/extraction-api/notes/list-notes"
+          ]
+        },
+        {
+          "group": "Reminders",
+          "pages": [
+            "api-reference/endpoint/extraction-api/reminders/list-reminders"
+          ]
+        },
+        {
+          "group": "Sales Associates",
+          "pages": [
+            "api-reference/endpoint/extraction-api/sales-associates/list-sales-associates"
+          ]
+        },
+        {
+          "group": "Slices",
+          "pages": [
+            "api-reference/endpoint/extraction-api/slices/list-slices"
+          ]
+        }
       ]
     }
   ],

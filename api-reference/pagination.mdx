@@ -1,0 +1,55 @@
+---
+title: Pagination
+---
+
+We basically expose the pagination information all via header attributes, as follows:
+
+<table>
+  <thead>
+    <tr>
+      <th>key</th>
+      <th>eg. value</th>
+      <th>description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>X-Total-Count</td>
+      <td>
+        <code>123</code>
+      </td>
+      <td>Information about the total records the query will return in total (all pages)</td>
+    </tr>
+    <tr>
+      <td>Link</td>
+      <td>
+        <code>&lt;https://api.bspk.com/api/extraction/v1/emails.json?page=2&gt;; rel='next', &lt;https://api.bspk.com/api/extraction/v1/emails.json?page=18&gt;; rel='last'</code>
+      </td>
+      <td>Links for the last and next pages</td>
+    </tr>
+  </tbody>
+</table>
+
+For example, let's make a curl request to the messages API, to find out how many message we have for the client `CLI1`:
+
+```console
+$ curl -I "https://api.bspk.com/api/extraction/v1/messages?client_ids=CLI1"
+```
+
+The `-I` parameter indicates that we only care about the headers, not the actual content. In examining the result, you'll notice some information in the Link header that looks like this:
+
+```
+HTTP/1.1 200 OK
+Server: nginx
+Date: Sat, 07 Aug 2021 22:34:11 GMT
+Content-Type: application/json; charset=utf-8
+X-Total-Count: 3000
+Link: <https://api.bspk.com/api/extraction/v1/messages?client_ids=CLI1&page=2>; rel='next',
+      <https://api.bspk.com/api/extraction/v1/messages?client_ids=CLI1&page=30>; rel='last'
+```
+
+Since by default, all paginated queries start at page `1`, `rel="last"` provides more information stating that the last page of results is on page `30`. Thus, we have `29` more pages of information about messages from client `CLI1` that we can consume.
+
+<Info>
+  **Important**: Always rely on these link relations provided to you. Don't try to guess or construct your own URL.
+</Info>

@@ -1,0 +1,24 @@
+---
+title: Authentication
+---
+
+BSPK API uses a token based authentication which you have to include in the header of every request. Company admins can generate API keys and can have multiple valid tokens at the same time.
+
+To generate an API token, in the BSPK Portal web app go to `API keys` menu and click the **CREATE A API KEY** button.
+
+<Info>
+  **Important**: Developers with BSPK API keys will be granted full access to the data in each endpoint. Access to this data is binary: everything or nothing.
+</Info>
+
+Requests that require authentication will return `403 Forbidden` in case of invalid credential or your IP address is not allowed not present in our allowed list.
+
+The authorization header should be in the following format:
+
+```console
+$ curl -H "Authorization: Bearer TOKEN" https://api.bspk.com/api/extraction/v1/appointments
+```
+
+
+<Warning>
+  Access to Extraction API is IP restricted. Please contact [bspk-support@bspk.com](mailto:bspk-support@bspk.com) to provide a list of IP addresses you want to allow or your requests will be denied.
+</Warning>

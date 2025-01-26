@@ -1,0 +1,27 @@
+---
+title: Rate limiting
+---
+
+All API calls are limited to `30` requests every `10` seconds. Once this limit has been reached, calls will return and error with status code 429. This rate limit is evaluated on a rolling window basis.
+
+API requests are limited to the amount specified in the returned `X-RateLimit-Limit` header (per 10 seconds). Exceeding that limit will cause BSPK to return an `HTTP 429` response. Check the `X-RateLimit-Limit` and `X-RateLimit-Remaining` headers to see how many more requests you are allowed until throttling kicks in.
+
+```console
+$ curl -I --header "Authorization: Bearer TOKEN" \
+https://api.bspk.com/api/extraction/v1/appointments
+
+> HTTP/1.1 200 OK
+> Date: Sat, 07 Aug 2021 00:17:40 GMT
+> Content-Type: application/json; charset=utf-8
+> X-Ratelimit-Limit: 30
+> X-Ratelimit-Remaining: 29
+```
+
+Whenever the rate limit is reached, in addition to the other headers you will also receive the `X-RateLimit-Reset` which you can use to smartly call our API again only after rate limit window is reseted.
+
+| key              | eg. value         | Description                                                            |
+|:-----------------|:------------------| -----------------------------------------------------------------------|
+| RateLimit-Reset  | 1628304730        | The remaining window before the rate limit resets in UTC epoch seconds |
+
+
+You can use your desired programing language to convert the UTC epoch seconds to DateTime so that you can use it.

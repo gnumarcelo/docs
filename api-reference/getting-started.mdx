@@ -1,0 +1,40 @@
+---
+title: Getting started
+---
+
+The BSPK API is organized around REST. Our API has predictable resource-oriented URLs, accepts form-encoded request bodies, returns JSON-encoded responses, and uses standard HTTP response codes, authentication, and verbs.
+
+To access BSPK's API a company's administrator must generate an `API Key` on the BSPK Admin portal and **provide a list of IP addresses** so that we allow these IP adresses access our API endpoints.
+
+Please reach out to [bspk-support@bspk.com](mailto:bspk-support@bspk.com) in case you have any question related to BSPK API.
+
+#### Current Supported APIs:
+
+
+| API           | Base URL | Description / Main Usecase | 
+| --------------| ---------| ---------------------------|
+| <a href="/extraction-api">Extraction API</a> | `https://api.bspk.com/api/extraction/*` | Focused on providing *read* access to the data generated on BSPK's side so that you use it to fetch data and feed it into your system.  |
+| <a href="/platform-api">Platform API</a> | `https://api.bspk.com/api/platform/*` |Focused on providing a way to easily integrate external systems with BSPK Platform via endpoints and webhook events.|
+
+Once you are in possession of the `API Key` and have provided your IP address to our allowed list, then you can start using our API. We provide you both Swagger Documentation and a Postman Collection for each of our APIs so that you can easily start exploring it.
+
+## Postman Collections
+
+To help you easily testing the our APIs, you may download our Postman Collections.
+
+### Import the collection
+
+1. Open Postman and click Import, then select "Import From Link";
+2. Copy & Paste one of the links bellow and press the "Import" button:
+
+| API           | Postman Collection |
+|:--------------|:---------|
+| Extraction API |<a href="/downloads/bspk-extraction_api_postman_collection.json" download>https://developers.bspk.com/download/bspk-extraction_api_postman_collection.json</a> | 
+| Platform API | <a href="/downloads/bspk-platform_api_postman_collection.json" download>https://developers.bspk.com/download/bspk-platform_api_postman_collection.json</a> |
+
+
+![Postman collection import](/images/postman-import-collection.png)
+
+Then you click on the collection you just imported, select "Variables" and the you place your own credential that you've generated via the admin.
+
+![Postman collection import](/images/postman-credentials-setting.png)
