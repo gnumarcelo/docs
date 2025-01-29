@@ -1,0 +1,119 @@
+---
+title: Product Prices
+---
+
+<table>
+  <tbody>
+    <tr>
+      <td>File Prefix</td>
+      <td>
+        <code>PRODUCT-PRICES</code>
+      </td>
+    </tr>
+    <tr>
+      <td>Current Version</td>
+      <td>
+        <code>V2</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Attribute</strong></td>
+      <td><strong>Format</strong></td>
+      <td><strong>Length</strong></td>
+      <td><strong>Required</strong></td>
+      <td><strong>Description</strong></td>
+      <td><strong>Example</strong></td>
+    </tr>
+    <tr>
+      <td><strong>product_ref</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>Yes</td>
+      <td>Unique product reference descriptor</td>
+      <td>103495</td>
+    </tr>
+    <tr>
+      <td><strong>sku</strong></td>
+      <td>Alphanumeric. <br /> Use `*` as wildcard to indicate all skus</td>
+      <td>1-255</td>
+      <td>Yes</td>
+      <td>SKU of product variant</td>
+      <td>B01N53LF</td>
+    </tr>
+    <tr>
+      <td><strong>price</strong></td>
+      <td>Numeric</td>
+      <td>1-255</td>
+      <td>Yes</td>
+      <td>Product unit price</td>
+      <td>399.99</td>
+    </tr>
+    <tr>
+      <td><strong>currency_code</strong></td>
+      <td>ISO 4217 Must belong to our supported currencies</td>
+      <td>3</td>
+      <td>Yes</td>
+      <td>Currency code</td>
+      <td>USD</td>
+    </tr>
+    <tr>
+      <td><strong>store_refs</strong></td>
+      <td>Alphanumeric `;` separated list.</td>
+      <td>1-65535</td>
+      <td>No</td>
+      <td>Price only applies to these stores. If omitted, apply to all stores.</td>
+      <td>B32;C85</td>
+    </tr>
+    <tr>
+      <td><strong>starting_on</strong></td>
+      <td>Date ISO 8601</td>
+      <td>10</td>
+      <td>No</td>
+      <td>Price applicable since</td>
+      <td>2022-01-23</td>
+    </tr>
+    <tr>
+      <td><strong>ending_on</strong></td>
+      <td>Date ISO 8601</td>
+      <td>10</td>
+      <td>No</td>
+      <td>Price applicable until. Only valid for discounted prices</td>
+      <td>2022-12-31</td>
+    </tr>
+    <tr>
+      <td><strong>discounted</strong></td>
+      <td>Boolean [TRUE|FALSE]</td>
+      <td></td>
+      <td>No</td>
+      <td>Price represent a discount. If empty, defaults to FALSE</td>
+      <td>TRUE</td>
+    </tr>
+  </tbody>
+</table>
+
+### Standard price
+
+A standard price will be applied as soon as it is received, considering there is no `starting_on` date or a date in the past. It has `discounted` as FALSE. If a new standard price is received, it will immediately replace the current standard price.
+
+### Scheduling a standard price
+
+There is the possibility of setting a price to be applied on a future date. For example, in order to schedule standard price from the specified date 20XX-12-24, the CSV row with such standard price needs to be set as `starting_on: "20XX-12-24"`. This price will be applied automatically at 20XX-12-24 and will remain applied until a new standard price is imported.
+
+### Discounted price
+
+A discounted price is different in a way that the price will appear differently in BSPK, showing the standard and discounted price together, making the discount evident in the product page. In order to import a discounted price, the `discounted` attribute needs to be set to TRUE.
+
+For a discounted price to be applied, a standard price must also or already be set for a given product. Just like the standard price, the discount price can also be specified for particular currency code, SKU or store of given product.
+
+Both standard and discounted price can be sent in the same import file. In order to reset the discounted price, a new standard price needs to be imported for that product. Current discounted price can also be overwritten with a new discounted price whenever a new discounted price is imported.
+
+### Scheduling a discounted price
+
+There is the possibility of scheduling a discounted price for the future. There is also the possibility of setting an `ending_on` date for that discounted price. If no end date is set, the discounted price will remain until a new price is applied.
+
+As an example, lets suppose there is a sale for the upcoming holiday, that will start on Dec 24 and end on Jan 02. A price is sent with `discounted` TRUE, `starting_on` Dec 24 and `ending_on` Jan 02. This way, once Dec 24 starts, the discounted price will be applied, and once Jan 03 hits, the price is reverted back to its standard one.

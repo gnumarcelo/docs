@@ -1,0 +1,95 @@
+BSPK offers seamless integration with your existing systems by synchronizing data in near real time. For instance, if you add a new client or product on your Shopify portal or POS/ERP system, the BSPK platform's connectors will promptly sync this data to our platform in near real time or according to your chosen interval. Within BSPK, you can generate information about clients, sales associates, calls, messages, and other data relevant to personalized client engagement. This data can be easily extracted and sycnronized with other systems as required.
+BSPK's robust platform effortlessly manages millions of shoppers. Some BSPK customers have conveniently integrated 30 years of sales data, while others have millions of shoppers and 5 years of sales data.
+Integration Overview
+BSPK integrates data from our customers omni-channel source or external systems like a POS (Point of Sale) or ERP export data via import APIs or flat file import format. This data typically includes information related to clients, sales history, products, store locations, sales advisors, and other relevant details. BSPK connectors support integration with multiple systems. For instance, if a customer has products distributed between systems like POS, ERP, PIM or DAM or in complicated scenarios where the data attributes are synced from various sources, such as product names from POS and images from ERP, BSPK connectors are designed to handle these complexities efficiently.
+BSPK platform's connectors import the CSV files into the BSPK platform. This import process can occur in near real-time or based on a specific time interval chosen by the brand. Once the data is imported, it is mapped into the BSPK platform's structure.
+Brands generate a wealth of data in BSPK, including client profiles, sales associate interactions, product selections, call records, messages, actions within idea books, reminders, and more. The data generated within BSPK can be exported in two different ways. 
+Platform API (Webhooks): 
+BSPK's Platform API includes webhooks that allow automatic data push to external systems in real-time for Client and File Upload events.
+Extraction API: 
+ Brands can use the Extraction API's RESTful interface to extract data for clients, slices, appointments, calls, messages, and more.
+Integration Pathway
+Choose the right integration capabilities of BSPK depending on your requirements and the type of data you want to import. Let's summarize the pathways below and explain their scenarios. 
+Integration Pathway
+Description
+Data Flow
+Technical Guide
+File Connectors
+File connectors enable importing CSV data from external systems, such as POS and ERP, to BSPK.
+BSPK 
+ External System
+Core Data Integration Guide V2 
+Platform API
+Webhooks in the Platform API enable automatic real-time data push to external systems but only support Client and File Upload events.
+BSPK 
+ External System
+Platform API 
+Extraction API
+The Extraction API enables brands to retrieve data on client engagement, including clients, slices, appointments, calls, and messages.
+BSPK 
+ External System
+Extraction API 
+Mixed
+You can use a combination of File Connectors, Platform API, and Extraction API to enable bidirectional communication as needed.
+BSPK 
+ External System
+It's worth noting that BSPK is designed to export client and client engagement data only. BSPK does not export data such as sales, locations, or products because BSPK doesn't generate such data within the platform; instead we treat the brand’s data repositories as the source of truth. 
+Additional information about data synchronization
+During synchronization, the client's database and system are always treated as a source of truth, and our system doesn't modify or merge records on behalf of customers.
+You can set synchronization intervals ranging from as frequently as a minute to as infrequently as a month, all easily configurable within our system. 
+All future updates are incremental once data is imported for the first time. For example, if we receive a new purchase for a client, only that purchase is synchronized. If an associate updates a phone number for a client in BSPK, only the phone number is updated.
+While BSPK can enhance client profiles with additional data attributes, it's important to note that most brands typically lack a designated database structure to store such data. Consequently, the synchronization process primarily involves transferring basic client information from BSPK.
+Streamlined Integration Process: Step-by-Step 
+BSPK provides a streamlined and step-by-step integration procedure, ensuring a smooth and hassle-free completion of the integration process. To ensure all necessary details for integration are accessible to brands, we have compiled an 
+integration guide
+ with comprehensive setup instructions. IT experts and technical managers can use this integration guide to onboard their data into the BSPK platform. 
+The integration process starts with a 
+Kickoff Meeting 
+to
+ 
+establish integration goals, address specific requirements, and plan for schedule. With the understanding of goals and requirements, the BSPK team moves into 
+Preparing Engineering Tasks
+ and will compile the work required for the integration process.   The next step is to 
+Connect Integration Teams 
+to start their respective integration or engineering tasks compiled earlier. The teams will sync with recurring meetings, normally 
+Weekly Meetings
+, involving the BSPK project manager and your brand's project manager to promptly resolve any issues, contributing to a smooth and successful integration process. 
+Integration Time Frame: 
+The integration process usually takes one to six weeks, depending on your brand's data sources, the work involved in transforming your data, and the complexity of integration. Tasks related to product catalogue or inventory synchronizations often take the most effort, depending on the features of the customer’s or brand’s ERP setup.
+For a seamless and effective integration process, BSPK has an evolved project management and task management process that prioritizes workflow milestones based on the customer’s business goals, success metrics, feature needs and technical resources. We also pay careful attention to business or technical execution risks and prepare a strategy about how to mitigate these risks as the project advances from the kickoff step to project delivery.
+Relevant Pages
+
+
+
+
+
+
+
+
+
+
+
+
+Overview
+
+
+
+
+
+
+
+
+Cloud-Enabled SaaS Platform
+
+
+
+
+
+
+
+
+
+
+
+
+Data Security & Privacy

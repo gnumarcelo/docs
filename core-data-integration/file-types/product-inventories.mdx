@@ -1,0 +1,75 @@
+---
+title: Product Inventory
+---
+
+<table>
+  <tbody>
+    <tr>
+      <td>File Prefix</td>
+      <td>
+        <code>PRODUCT-INVENTORY</code>
+      </td>
+    </tr>
+    <tr>
+      <td>Current Version</td>
+      <td>
+        <code>V2</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Attribute</strong></td>
+      <td><strong>Format</strong></td>
+      <td><strong>Length</strong></td>
+      <td><strong>Required</strong></td>
+      <td><strong>Description</strong></td>
+      <td><strong>Example</strong></td>
+    </tr>
+    <tr>
+      <td><strong>product_ref</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>Yes</td>
+      <td>Unique product reference descriptor</td>
+      <td>103495</td>
+    </tr>
+    <tr>
+      <td><strong>sku</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>Yes</td>
+      <td>SKU of product variant</td>
+      <td>B01N53LF</td>
+    </tr>
+    <tr>
+      <td><strong>quantity</strong></td>
+      <td>Integer</td>
+      <td>1-255</td>
+      <td>Yes</td>
+      <td>Number of items on hand</td>
+      <td>42</td>
+    </tr>
+    <tr>
+      <td><strong>store_ref</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>Yes</td>
+      <td>Inventory from given store</td>
+      <td>B32</td>
+    </tr>
+    <tr>
+      <td><strong>at</strong></td>
+      <td>Datetime ISO 8601</td>
+      <td>10-20</td>
+      <td>Yes</td>
+      <td>Inventory reported as of this date</td>
+      <td>2022-01-17T19:23:22</td>
+    </tr>
+  </tbody>
+</table>
+
+<Info>For a given `sku` and `store_ref`, the most recent `at` attribute will determine the current inventory level, irrespective of the order of file processing.</Info>

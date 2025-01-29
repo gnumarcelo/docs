@@ -1,0 +1,141 @@
+---
+title: Stores
+---
+
+<table>
+  <tbody>
+    <tr>
+      <td>File Prefix</td>
+      <td>
+        <code>STORE</code>
+      </td>
+    </tr>
+    <tr>
+      <td>Current Version</td>
+      <td>
+        <code>V2</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<Info>This data can also be configured in the administrative portal.</Info>
+
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Attribute</strong></td>
+      <td><strong>Format</strong></td>
+      <td><strong>Length</strong></td>
+      <td><strong>Required</strong></td>
+      <td><strong>Description</strong></td>
+      <td><strong>Example</strong></td>
+    </tr>
+    <tr>
+      <td><strong>store_ref</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>Yes</td>
+      <td>Unique store reference descriptor</td>
+      <td>ST_3452</td>
+    </tr>
+    <tr>
+      <td><strong>name</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>Yes</td>
+      <td>Store name</td>
+      <td>Saint Honoré</td>
+    </tr>
+    <tr>
+      <td><strong>address</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>No</td>
+      <td>Store address</td>
+      <td>12 rue de la Mouette</td>
+    </tr>
+    <tr>
+      <td><strong>city</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>No</td>
+      <td>Store city</td>
+      <td>Paris</td>
+    </tr>
+    <tr>
+      <td><strong>state</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>No</td>
+      <td>Store state</td>
+      <td>Ile-de-France</td>
+    </tr>
+    <tr>
+      <td><strong>zip_code</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>No</td>
+      <td>Store zip code</td>
+      <td>75002</td>
+    </tr>
+    <tr>
+      <td><strong>country_code</strong></td>
+      <td>ISO 3166 Must belong to our supported countries</td>
+      <td>2</td>
+      <td>No</td>
+      <td>Store country code</td>
+      <td>FR</td>
+    </tr>
+    <tr>
+      <td><strong>currency_code</strong></td>
+      <td>ISO 4217 Must belong to our supported currencies</td>
+      <td>3</td>
+      <td>Yes</td>
+      <td>Store currency code</td>
+      <td>USD</td>
+    </tr>
+    <tr>
+      <td><strong>phone</strong></td>
+      <td>E.164</td>
+      <td>1-255</td>
+      <td>No</td>
+      <td>Store phone number</td>
+      <td>+14155551212</td>
+    </tr>
+    <tr>
+      <td><strong>privacy_policy_link</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>No</td>
+      <td>Url to a public page describing the privacy policy for this store</td>
+      <td>https://www.bspk.com/privacy_policy</td>
+    </tr>
+    <tr>
+      <td><strong>privacy_policy_email</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>No</td>
+      <td>Customer support email for requests about privacy policy for this store</td>
+      <td>privacy@bspk.com</td>
+    </tr>
+    <tr>
+      <td><strong>store_region_ref</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>No</td>
+      <td>Store belongs to this store region</td>
+      <td>R1</td>
+    </tr>
+    <tr>
+      <td><strong>active</strong></td>
+      <td>Boolean [TRUE|FALSE]</td>
+      <td></td>
+      <td>Yes</td>
+      <td>Determine if the store should be shown or searchable. (If not active it will be hidden but can still be attached to a sale, a product variant, a product price, a product inventory, a shopper or a sales associate)</td>
+      <td>TRUE</td>
+    </tr>
+  </tbody>
+</table>

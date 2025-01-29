@@ -1,0 +1,122 @@
+---
+title: Sales
+---
+
+<table>
+  <tbody>
+    <tr>
+      <td>File Prefix</td>
+      <td>
+        <code>SALE</code>
+      </td>
+    </tr>
+    <tr>
+      <td>Current Version</td>
+      <td>
+        <code>V2</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Attribute</strong></td>
+      <td><strong>Format</strong></td>
+      <td><strong>Length</strong></td>
+      <td><strong>Required</strong></td>
+      <td><strong>Description</strong></td>
+      <td><strong>Example</strong></td>
+    </tr>
+    <tr>
+      <td><strong>sale_ref</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>Yes</td>
+      <td>Unique sale reference descriptor</td>
+      <td>103495</td>
+    </tr>
+    <tr>
+      <td><strong>product_ref</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>Yes</td>
+      <td>Sale of given product</td>
+      <td>B01N53LF</td>
+    </tr>
+    <tr>
+      <td><strong>quantity</strong></td>
+      <td>Numeric</td>
+      <td>1-7</td>
+      <td>Yes</td>
+      <td>Quantity</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td><strong>price</strong></td>
+      <td>Numeric</td>
+      <td>1-10</td>
+      <td>Yes</td>
+      <td>Unit Price of the sale</td>
+      <td>599.90</td>
+    </tr>
+    <tr>
+      <td><strong>currency_code</strong></td>
+      <td>ISO 4217 Must belong to our supported currencies</td>
+      <td>3</td>
+      <td>Yes</td>
+      <td>Currency for the sale</td>
+      <td>USD</td>
+    </tr>
+    <tr>
+      <td><strong>created_at</strong></td>
+      <td>Date ISO 8601</td>
+      <td>10</td>
+      <td>Yes</td>
+      <td>Date and time the sale occurred</td>
+      <td>2022-01-17</td>
+    </tr>
+    <tr>
+      <td><strong>sku</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>No</td>
+      <td>SKU of product variant of the sale</td>
+      <td>B01N53LF</td>
+    </tr>
+    <tr>
+      <td><strong>shopper_ref</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>Yes</td>
+      <td>Shopper who made the purchased</td>
+      <td>SHOPPER-1</td>
+    </tr>
+    <tr>
+      <td><strong>store_ref</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>No</td>
+      <td>Store where the sale happened</td>
+      <td>STORE-1</td>
+    </tr>
+    <tr>
+      <td><strong>sales_associate_ref</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>No</td>
+      <td>Sales associate who did the sale</td>
+      <td>SALES_ASSOCIATE-1</td>
+    </tr>
+  </tbody>
+</table>
+
+### Price
+
+It is essential to communicate the sale price based on the unit price of each individual item, rather than the total price for all units. For example, if a sale comprises 2 identical belts, each priced at $20, the reporting should reflect the following:
+
+```
+Quantity: 2
+Price: 20.0
+```

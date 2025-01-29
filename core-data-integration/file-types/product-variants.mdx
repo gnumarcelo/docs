@@ -1,0 +1,202 @@
+---
+title: Product Variants
+---
+
+<table>
+  <tbody>
+    <tr>
+      <td>File Prefix</td>
+      <td>
+        <code>PRODUCT-VARIANTS</code>
+      </td>
+    </tr>
+    <tr>
+      <td>Current Version</td>
+      <td>
+        <code>V2</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+Product variants express the variations a given product can be available in.
+
+
+<Info>Every product has to have at least one or more variant defined</Info>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Attribute</strong></td>
+      <td><strong>Format</strong></td>
+      <td><strong>Length</strong></td>
+      <td><strong>Required</strong></td>
+      <td><strong>Description</strong></td>
+      <td><strong>Example</strong></td>
+    </tr>
+    <tr>
+      <td><strong>product_ref</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>Yes</td>
+      <td>Unique product reference descriptor</td>
+      <td>103495</td>
+    </tr>
+    <tr>
+      <td><strong>sku</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>Yes</td>
+      <td>SKU of product variant</td>
+      <td>B01N53LF</td>
+    </tr>
+    <tr>
+      <td><strong>barcode</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>No</td>
+      <td>Barcode (UPC, EAN, ISBN, etc.)</td>
+      <td>03600291452</td>
+    </tr>
+    <tr>
+      <td><strong>option_1_name</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>No</td>
+      <td>1st variation</td>
+      <td>Color</td>
+    </tr>
+    <tr>
+      <td><strong>option_1_value</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>No</td>
+      <td>Value for that sku</td>
+      <td>Green</td>
+    </tr>
+    <tr>
+      <td><strong>option_2_name</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>No</td>
+      <td>2nd variation</td>
+      <td>Size</td>
+    </tr>
+    <tr>
+      <td><strong>option_2_value</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>No</td>
+      <td>Value for that sku</td>
+      <td>42.5</td>
+    </tr>
+    <tr>
+      <td><strong>option_3_name</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>No</td>
+      <td>3nd variation</td>
+      <td>Material</td>
+    </tr>
+    <tr>
+      <td><strong>option_3_value</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>No</td>
+      <td>Value for that sku</td>
+      <td>Gold</td>
+    </tr>
+    <tr>
+      <td><strong>language_code</strong></td>
+      <td>ISO 639-1 Must belong to our supported languages</td>
+      <td>2</td>
+      <td>Conditionally</td>
+      <td>Language used in options and values. Must be present if options and values are specified</td>
+      <td>en</td>
+    </tr>
+    <tr>
+      <td><strong>store_refs</strong></td>
+      <td>Alphanumeric `;` separated list.</td>
+      <td>1-255</td>
+      <td>No</td>
+      <td>Product only exists for these stores. If omitted, available to all stores</td>
+      <td>B32;C85</td>
+    </tr>
+    <tr>
+      <td><strong>published</strong></td>
+      <td>Boolean [TRUE|FALSE]</td>
+      <td></td>
+      <td>Yes</td>
+      <td>Determine if the variant should be shown or searchable in the collection view. If not published it will be hidden but can still be attached to a sale</td>
+      <td>TRUE</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<Info>`sku` is unique and case insensitive (e.g. B01N53LF is considered the same as b01n53Lf)</Info>
+
+### Notes
+
+`option_x_name` can be used to split product in the collection view via a company wide configuration. For example, **Color** could be selected, so that each color variant of a given product would show as a top level image in the collection view. 
+
+If a product does not have multiple variants, for example a shoe cleaning kit, a variant should be created with no options.
+
+### Example
+Here are some example of common options for variants for different product types:
+
+<table>
+  <tbody>
+    <tr>
+      <td></td>
+      <td>Option 1</td>
+      <td>Option 2</td>
+      <td>Option 3</td>
+    </tr>
+    <tr>
+      <td><strong>Apparel</strong></td>
+      <td>Color</td>
+      <td>Size</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong>Shoes</strong></td>
+      <td>Color</td>
+      <td>Size</td>
+      <td>Width</td>
+    </tr>
+    <tr>
+      <td><strong>Jewelry</strong></td>
+      <td>Material</td>
+      <td>Size</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+### Localization
+To localize option names and values, multiple rows can be sent for a given `product_ref` and `sku` combination with a different `language_code`.
+
+Example:
+```
+product_ref,sku,barcode,option_1_name,option_1_value,option_2_name,option_2_value,option_3_name,option_3_value,language_code,store_ids,published
+103495,B01N53LF,03600291452,Color,Green,Size,11,,,en,B32;C85,TRUE
+103495,B01N53LF,03600291452,Couleur,Vert,Taille,42.5,,,fr,B32;C85,TRUE
+```
+
+
+
+### Editing and deleting options
+
+Imported options (`option_1_value`, `option_2_value` and `option_3_value`) replace the current options. For example:
+1. A variant as an option named `color` with the value `green`
+2. A file for this variant is imported with `option_1_name`: `color` and `option_1_value`: `red`
+3. Now this variant as the option named `color` with the value `red` (option `green` as been removed from this variant)
+
+Imported options (`option_1_name`, `option_2_name` and `option_3_name`) with blank corresponding values will delete current options. For example:
+1. A variant as an option named `color` with the value `green`
+2. A file for this variant is imported with `option_1_name`: `color` and `option_1_value`: `""`
+3. Now this variant don’t have `color` options anymore

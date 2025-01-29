@@ -42,23 +42,43 @@
       "url": "https://mintlify.com/docs"
     },
     {
-      "name": "Community",
+      "name": "Support",
       "icon": "slack",
       "url": "https://mintlify.com/community"
-    },
-    {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
     }
   ],
   "navigation": [
     {
       "group": "Get Started",
       "pages": [
-        "introduction",
-        "quickstart",
-        "development"
+        "overview",
+        "cloud-enabled-saas-platform",
+        "data-security-and-privacy",
+        "integration-with-bspk"
+      ]
+    },
+    {
+      "group": "Core Data Integration Guide",
+      "pages": [
+        "core-data-integration/introduction",
+        "core-data-integration/importing-data",
+        "core-data-integration/pre-reqs-to-import",
+        "core-data-integration/sample-files",
+        {
+          "group": "File Types",
+          "pages": [
+            "core-data-integration/file-types/store-regions",
+            "core-data-integration/file-types/stores",
+            "core-data-integration/file-types/sales-associates",
+            "core-data-integration/file-types/shoppers",
+            "core-data-integration/file-types/products",
+            "core-data-integration/file-types/product-variants",
+            "core-data-integration/file-types/product-prices",
+            "core-data-integration/file-types/product-inventories",
+            "core-data-integration/file-types/product-images",
+            "core-data-integration/file-types/sales"
+          ]
+        }
       ]
     },
     {

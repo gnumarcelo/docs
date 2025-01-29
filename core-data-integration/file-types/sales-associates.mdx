@@ -1,0 +1,91 @@
+---
+title: Sales Associates
+---
+
+<table>
+  <tbody>
+    <tr>
+      <td>File Prefix</td>
+      <td>
+        <code>SALES-ASSOCIATE</code>
+      </td>
+    </tr>
+    <tr>
+      <td>Current Version</td>
+      <td>
+        <code>V2</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<Info>This data can also be configured in the administrative portal.</Info>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Attribute</strong></td>
+      <td><strong>Format</strong></td>
+      <td><strong>Length</strong></td>
+      <td><strong>Required</strong></td>
+      <td><strong>Description</strong></td>
+      <td><strong>Example</strong></td>
+    </tr>
+    <tr>
+      <td><strong>sales_associate_ref</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>Yes</td>
+      <td>Unique sales associate reference descriptor</td>
+      <td>FR23</td>
+    </tr>
+    <tr>
+      <td><strong>first_name</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>Yes</td>
+      <td>Sales associate first name</td>
+      <td>James</td>
+    </tr>
+    <tr>
+      <td><strong>last_name</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>Yes</td>
+      <td>Sales associate last name</td>
+      <td>Smith</td>
+    </tr>
+    <tr>
+      <td><strong>email</strong></td>
+      <td>Alphanumeric</td>
+      <td>5-255</td>
+      <td>No</td>
+      <td>Sales associate email</td>
+      <td>jsmith@company.com</td>
+    </tr>
+    <tr>
+      <td><strong>mobile_phone</strong></td>
+      <td>E.164</td>
+      <td>1-255</td>
+      <td>No</td>
+      <td>Sales associate mobile phone</td>
+      <td>+33653236372</td>
+    </tr>
+    <tr>
+      <td><strong>store_ref</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>Yes</td>
+      <td>Sales associate belongs to this store</td>
+      <td>ST_3452</td>
+    </tr>
+    <tr>
+      <td><strong>active</strong></td>
+      <td>Boolean [TRUE|FALSE]</td>
+      <td></td>
+      <td>Yes</td>
+      <td>Determine if the sales associate should be able to login, shown or searchable. (If not active it will be hidden but can still be attached to a sale or a shopper)</td>
+      <td>TRUE</td>
+    </tr>
+  </tbody>
+</table>

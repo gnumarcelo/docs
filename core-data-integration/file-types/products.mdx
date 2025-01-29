@@ -1,0 +1,108 @@
+---
+title: Products
+---
+
+File prefix
+PRODUCT
+Current version
+V2
+
+Product data represent the top level information associated with an item. It captures its basic information, category taxonomy and brand association. For every product, there needs to be one production definition.
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Attribute</strong></td>
+      <td><strong>Format</strong></td>
+      <td><strong>Length</strong></td>
+      <td><strong>Required</strong></td>
+      <td><strong>Description</strong></td>
+      <td><strong>Example</strong></td>
+    </tr>
+    <tr>
+      <td><strong>product_ref</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>Yes</td>
+      <td>Unique product reference descriptor</td>
+      <td>103495</td>
+    </tr>
+    <tr>
+      <td><strong>name</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>Yes</td>
+      <td>Product title</td>
+      <td>Cristo Jacket</td>
+    </tr>
+    <tr>
+      <td><strong>description</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-65535</td>
+      <td>No</td>
+      <td>Detailed description</td>
+      <td>The latest jacket in the summer collection</td>
+    </tr>
+    <tr>
+      <td><strong>categories</strong></td>
+      <td>
+        Alphanumeric <br />
+        `;` separated list <br />
+        `>>` separated nested elements
+      </td>
+      <td>1-65535</td>
+      <td>No</td>
+      <td>Product category hierarchy</td>
+      <td>Apparel>>Coats; Outdoor</td>
+    </tr>
+    <tr>
+      <td><strong>language_code</strong></td>
+      <td>ISO 639-1 Must belong to our supported languages</td>
+      <td>1-65535</td>
+      <td>No</td>
+      <td>Language used in name, description and categories</td>
+      <td>en</td>
+    </tr>
+    <tr>
+      <td><strong>published</strong></td>
+      <td>Boolean [TRUE|FALSE]</td>
+      <td></td>
+      <td>Yes</td>
+      <td>Determine if the product should be shown or searchable in the collection view. (If not published it will be hidden but can still be attached to a product variant, a product price, a product inventory, a product image or a sale)</td>
+      <td>TRUE</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<Info>`product_ref` is unique and case insensitive (e.g. B234c9 is considered the same as b234C9)</Info>
+
+### Categorization
+
+Categories can be defined to facilitate filtering in the collection view. A product can be assigned to multiple categories. Products are automatically added to the **All** category. Other categories can be assigned via a `;` separated list. Nested categories are represented by `>>`.
+
+
+### Example
+A diamond ring could be assigned to the following categories.
+
+`Jewelry; Jewelry >> Rings; Jewelry >> Gemstones >> Diamond`
+
+<Info>Categories are traits of a given product. They don’t change even if the product has many variants.</Info>
+
+<img src="https://developers.bspk.com/download/attachments/1143242753/IMG_3942.png" style={{ width: '50%' }} alt="Categories filters in Collection view
+" />
+Categories filters in Collection view
+
+
+
+### Localization
+To localize name, description and categories, multiple rows can be sent for a given `product_ref` combination with a different `language_code`.
+
+
+### Example
+
+```
+product_ref,name,description,categories,language_code,published
+103495,Cristo Jacket,The latest jacket in the summer collection,Apparel>>Coats; Outdoor,en,TRUE
+103495,Veste Cristo,La dernière veste de la collection été,Vêtements>>Vestes; Extérieur,fr,TRUE
+```

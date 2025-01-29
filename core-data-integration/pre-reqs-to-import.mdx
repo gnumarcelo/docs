@@ -1,0 +1,109 @@
+---
+title: Prerequisites for Imports
+---
+
+File Type
+Files should be 
+UTF-8 encoded
+ 
+comma delimited
+ text files. 
+Headers And Values
+Files should contain a comma delimited header in the first line describing the order of the attributes contained in the rest of the file.
+Even if some attributes are not required, their corresponding header should always be present and their field value should be empty.
+Example
+
+
+store_region_ref,name,privacy_policy_link,privacy_policy_email
+1,Boutique du Soleil,,
+
+
+Naming Conventions
+Files should be name named as follow:
+`<TYPE>_<VERSION>_<CompanyName>_<YYYYMMDDHHMM>.csv`
+ 
+where:
+TYPE
+ is the type of data imported. 
+Valid types are: 
+STORE
+,
+STORE-REGION
+, 
+SALES-ASSOCIATE
+, 
+SHOPPER
+, 
+PRODUCT
+, 
+PRODUCT-VARIANTS
+, 
+PRODUCT-PRICES
+, 
+PRODUCT-INVENTORY
+, 
+PRODUCT-IMAGES
+, 
+SALE
+CompanyName
+ is CamelCase name of your company system-wide identifier as defined by BSPK. 
+YYYYMMDDHHMM
+ timestamp on when file is created.
+VERSION
+ is the file format version where some are currently in 
+V2
+ while others are in 
+V3
+ , depending on the import type.
+Example
+: 
+PRODUCT-IMAGES_V2_NiceCo_202209231455.csv
+To import similar file types on the same day, timestamps must be different so the system can trigger the next import. Files with a given name are only imported once.
+Pipelining
+Imported file can have dependencies on each other. For example data imported in a SALE file references data imported in a SHOPPER file (as each SALE row need to correspond to some SHOPPER row). BSPK guarantees that files will be imported in sequence (first in, first out), but the following file type order need to be respected to prevent dependencies issues:
+STORE-REGION
+STORE
+SALES-ASSOCIATE
+SHOPPER
+PRODUCT
+PRODUCT-VARIANTS
+PRODUCT-PRICES
+PRODUCT-INVENTORY
+PRODUCT-IMAGES
+SALE
+Reset non-required attributes
+Some imports have attributes that are not required (the “Required” column says “No”). Importing blank values will reset those attributes. For example if a 
+SHOPPER
+ file is imported with the following values:
+shopper_ref
+: 
+"103495"
+first_name
+: 
+"Marie"
+last_name
+: 
+"Curie"
+It will create a shopper record with those 
+first_name
+ and 
+last_name
+.
+But if after that, another 
+SHOPPER
+ file is imported with the following values:
+shopper_ref
+: 
+"103495"
+first_name
+: 
+""
+last_name
+: 
+""
+It will update this shopper record deleting its 
+first_name
+ and 
+last_name
+.
+It means that once a non-required attribute is set, all following imports should always carry a value for this attribute, otherwise it will reset it. 

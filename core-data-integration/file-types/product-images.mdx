@@ -1,0 +1,96 @@
+---
+title: Product Images
+---
+
+<table>
+  <tbody>
+    <tr>
+      <td>File Prefix</td>
+      <td>
+        <code>PRODUCT-IMAGES</code>
+      </td>
+    </tr>
+    <tr>
+      <td>Current Version</td>
+      <td>
+        <code>V2</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Attribute</strong></td>
+      <td><strong>Format</strong></td>
+      <td><strong>Length</strong></td>
+      <td><strong>Required</strong></td>
+      <td><strong>Description</strong></td>
+      <td><strong>Example</strong></td>
+    </tr>
+    <tr>
+      <td><strong>product_ref</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>Yes</td>
+      <td>Unique product reference descriptor</td>
+      <td>103495</td>
+    </tr>
+    <tr>
+      <td><strong>skus</strong></td>
+      <td>Alphanumeric ; separated list</td>
+      <td>1-255</td>
+      <td>No</td>
+      <td>SKU(s) of product variant. Leave blank to indicate the image applies to the product</td>
+      <td>B01N53LF;B02N53LF</td>
+    </tr>
+    <tr>
+      <td><strong>image_url</strong></td>
+      <td>URL</td>
+      <td>1-65535</td>
+      <td>Yes</td>
+      <td>Image URL. JPG and PNG images are supported</td>
+      <td>https://bspk.com/xkcd.jpg</td>
+    </tr>
+    <tr>
+      <td><strong>position</strong></td>
+      <td>Numeric</td>
+      <td></td>
+      <td>Yes</td>
+      <td>Order. This position is absolute for the product, meaning a same product_ref should contain only one position in its group of rows</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+
+<Info>The `image_url` content must be publicly accessible. The image will be downloaded and stored into BSPK CDN.</Info>
+
+### Processing Images
+
+The list of images for a product in a given file is considered canonical. This means that every time an import file is processed, when the first instance of a given product reference is encountered, all the existing images associated with that product will be removed.
+
+This provides a deterministic way to express what images should be associated with a product and its variants.
+
+### Example
+
+A new product is added to the catalog. There is only one image available. The following file assigns it to the product, but no specific variants.
+
+```
+product_ref,skus,image_url,position
+300,,https://bspk.com/image1.jpg,1
+```
+
+A photoshoot took place and now there are more specific pictures available for each sku. The following file assigns them to each variants.
+
+```
+product_ref,skus,image_url,position
+300,,https://bspk.com/image-var1.1.jpg,1
+300,VAR1,https://bspk.com/image-var1.2.jpg,2
+300,VAR2,https://bspk.com/image-var2.1.jpg,3
+300,VAR3;VAR4,https://bspk.com/image-var2.1.jpg,4
+```
+
+After this file is processed, the previously imported `image1.jpg` is no longer associated with the product.
+
+<Info>`image_url` are cached. If a same url is encountered, the content will not be downloaded again. If you change an image, make sure the file name is different.</Info>
