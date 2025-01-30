@@ -3,9 +3,15 @@ title: Importing Data
 ---
 
 The import process is achieved via exchange of data in CSV files. Files are deposited into a secure S3 bucket which trigger instant processing. The mechanism is meant to be a machine-to-machine exchange, where a reference system like a POS or ERP periodically export data to keep BSPK platform in sync.
+
 This method presents several benefits:
-ETL (Extract, Transform, Load) is a common process for data exchange between systems and will be familiar to system integrators.
-It performs at any scale. Initial data ingestion of millions of records is handled in the same way as an incremental change in a single record.
-It’s asynchronous and fault tolerant.
+
+- ETL (Extract, Transform, Load) is a common process for data exchange between systems and will be familiar to system integrators.
+- It performs at any scale. Initial data ingestion of millions of records is handled in the same way as an incremental change in a single record.
+- It’s asynchronous and fault tolerant.
+
 Data files are broken down in discreet types. This reduces sending redundant data and clarify the behavior of each operation. Files can contain incremental changes or full data set. Each time a file is processed, the underlying data is created if new or updated its reference exists already.
+
+<Info>
 Data import into BSPK is performed in real-time. New files are detected and processed immediately and concurrently. Sub-minute latency can be achieved if constant data synchronization is necessary or desired.
+</Info>

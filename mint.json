@@ -63,10 +63,10 @@
         "core-data-integration/introduction",
         "core-data-integration/importing-data",
         "core-data-integration/pre-reqs-to-import",
-        "core-data-integration/sample-files",
         {
-          "group": "File Types",
+          "group": "Import Files Specs",
           "pages": [
+            "core-data-integration/sample-files",
             "core-data-integration/file-types/store-regions",
             "core-data-integration/file-types/stores",
             "core-data-integration/file-types/sales-associates",
@@ -78,7 +78,10 @@
             "core-data-integration/file-types/product-images",
             "core-data-integration/file-types/sales"
           ]
-        }
+        },
+        "core-data-integration/supported-currencies",
+        "core-data-integration/supported-languages",
+        "core-data-integration/supported-countries"
       ]
     },
     {
