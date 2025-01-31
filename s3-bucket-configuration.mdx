@@ -1,0 +1,187 @@
+---
+title: S3 Buckets & Keys Management Guide
+---
+
+## Introduction 
+
+Batch file import into BSPK are performed via AWS S3 buckets. Your company has its own dedicated S3 bucket provisioned by BSPK. S3 access keys (S3 keys) give you the ability to programmatically upload files to your company S3 bucket and automate any part of your workflow with the BSPK import.
+
+You can get more details on the import process in [Core Data Integration Guide](/core-data-integration/introduction)
+
+## Managing S3 keys 
+
+To be able to work with S3 buckets directly, you need to create an S3 key.
+
+To do this, please go to the corresponding section in your company’s Admin portal. Select the **S3 Keys** link in the **Manage** section.
+
+![S3 Keys](/images/s3-bucket-configuration/s3_keys_menu_item.png)
+
+A list of all your S3 keys will be displayed. Take a note your company S3 bucket name. You will need it later.
+
+<Info>
+Please note that you can only have up to two active S3 keys at a time.
+</Info>
+
+![S3 Keys](/images/s3-bucket-configuration/s3_keys_index.png)
+
+
+### Creating S3 key 
+
+To start the flow to create an S3 key, click the Create S3 Key button. In the new page, confirm your action by clicking Create S3 Key.
+
+![Create S3 Key](/images/s3-bucket-configuration/s3_key_creation.png)
+
+Sometimes (especially when you create your S3 key for the first time) AWS will take some time to setup your access. Please be patient and do not close or refresh the page you’re currently on.
+
+Successful S3 key creation 
+
+Once your S3 key was created, you MUST write down your secret key and store it in a safe place.
+
+BSPK does not store keys. Once a key has been generated, we can't recover the secret.
+
+If you lose the secret key, the only option is to delete the old S3 key and create a new one.
+
+### Deleting S3 key 
+
+From time to time, you may want to rotate your keys and delete your old S3 key.
+
+<Info>
+  AWS Security Best Practices recommend rotating (deleting the old S3 key and creating a new one) periodically, at least twice a year.
+</Info>
+
+To do this, click the **Delete** button corresponding to the existing S3 key.
+
+![Delete S3 Key](/images/s3-bucket-configuration/s3_key_deletion.png)
+
+
+After confirmation, the S3 key will be deleted.
+
+### AWS Errors 
+
+Sometimes there can be transition error communicating with AWS. If you see an error, `"Something went wrong. Please try again later"`, do not worry. Wait for a minute and try again.
+
+![AWS Error](/images/s3-bucket-configuration/s3_key_something_went_wrong_error.png)
+
+If the error persists, please contact your local support.
+
+### Managing S3 keys video
+
+<video src="/images/s3-bucket-configuration/create_s3_access_keys_demo-2022-12-30_18.27.38.mkv" controls />
+
+
+### Working with S3 Buckets 
+
+Once you have created your S3 keys, you are ready to upload files to your S3 bucket. There are many options available.
+
+#### Programatic Integration 
+
+AWS has a very detailed guide on how you can upload files using S3 Keys.
+
+[Uploading objects - Amazon Simple Storage Service](https://docs.aws.amazon.com/AmazonS3/latest/userguide/upload-objects.html)
+
+These can be done with:
+
+- AWS SDK integration
+  - .NET
+  - Java
+  - Javascript
+  - Ruby
+  - PHP
+- REST API (Ex. Postman and many GUI clients for differents OSes)
+- AWS CLI
+
+<Note>
+  To minimize security risks and follow best practices, S3 key are limited to file upload and listing in your company’s S3 bucket. You can’t download or delete files.
+</Note>
+
+<Info>
+  Please use your company S3 bucket name in the examples below
+</Info>
+
+#### AWS CLI 
+
+First install the AWS CLI. Please follow the instructions in the [official AWS guide](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html).
+
+Once the AWS CLI is installed, please run the `aws configure` command. Provide **Access Key ID** and **Secret Access Key** to the console input. Region name and output format should be entered as displayed below.
+
+Please be mindful of trailing and leading spaces - they should not be present.
+
+![AWS CLI Configure](/images/s3-bucket-configuration/s3_keys_aws_configure.png)
+
+
+Once AWS CLI is configured, you can use it to upload and list with following commands.
+
+**Listing your bucket files**
+
+```bash
+aws s3 ls s3://bspk-test-company-integration-dev2
+```
+
+**Uploading your files to S3 bucket**
+
+```bash
+aws s3 cp test-file.csv s3://bspk-test-company-integration-dev2
+```
+
+#### CyberDuck client 
+
+[Cyberduck](https://cyberduck.io/) is a free cloud storage browser under the GPL license available on Mac OS and Windows.
+
+To setup a new connection, choose **Amazon S3** connection profile and fill out fields as in the example below.
+
+![CyberDuck S3 Connection](/images/s3-bucket-configuration/cyberduck_1_1.jpg)
+
+It is essential to provide **Path** in **More Options** section.
+
+Once filled, you can connect to your S3 bucket. From there you can list and upload files.
+
+![CyberDuck Upload](/images/s3-bucket-configuration/cyberduck_3_1.jpg)
+
+Successful upload message.
+
+![CyberDuck Upload success](/images/s3-bucket-configuration/cyberduck_2.jpg)
+
+#### S3 Browser 
+
+[S3 Browser](https://s3browser.com/) is a freeware Windows client for Amazon S3 and Amazon CloudFront. Please note that free version is available only for personal use.
+
+To setup your account, please fill in fields as described below.
+
+![S3 Browser Setup](/images/s3-bucket-configuration/s3_browser_1.jpg)
+
+
+Also, setup **Advanced settings** as described below.
+
+![S3 Browser Advanced settings](/images/s3-bucket-configuration/s3_browser_2.jpg) 
+
+
+Once account setup is finished you will see the main window where you can list and upload files.
+
+![S3 Browser Main window](/images/s3-bucket-configuration/s3_browser_3.jpg)
+
+
+#### Postman client 
+
+For Postman client, please use this collection of two requests (upload file and list files).
+
+Before use, please fill in collection variables - `s3_bucket_name`, `access_key_id` and `secret_key_value` with corresponding values.
+
+<a href="/docs/bspk_s3_keys_requests.postman_collection.json" download>bspk_s3_keys_requests.postman_collection.json</a>
+
+### File Import Logs
+
+To verify that import files were processed correctly, you can visit **Import Logs** menu item in **Activity** section.
+
+![Import Logs](/images/s3-bucket-configuration/s3_keys_import_logs_menu_item.png)
+
+
+There you can review all import results that you have uploaded.
+
+![Import Logs Index](/images/s3-bucket-configuration/s3_keys_import_logs_index.png)
+
+If there are errors during import process you can review them in import details by clicking on **Show** button.
+
+![Import Logs Details](/images/s3-bucket-configuration/s3_keys_import_logs_errors.png)
+
+
+ 

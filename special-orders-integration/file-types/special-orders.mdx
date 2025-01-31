@@ -1,0 +1,137 @@
+---
+title: Special Orders
+---
+
+<table>
+  <tbody>
+    <tr>
+      <td>File Prefix</td>
+      <td>
+        <code>SPECIAL-ORDERS</code>
+      </td>
+    </tr>
+    <tr>
+      <td>Current Version</td>
+      <td>
+        <code>V2</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+Special Order data represent the top level information associated with a special order. It captures its basic information, who, what and represents the definitive order status.
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Attribute</strong></td>
+      <td><strong>Format</strong></td>
+      <td><strong>Length</strong></td>
+      <td><strong>Required</strong></td>
+      <td><strong>Description</strong></td>
+      <td><strong>Example</strong></td>
+    </tr>
+    <tr>
+      <td><strong>order_ref</strong></td>
+      <td>Alphanumeric</td>
+      <td>3-255</td>
+      <td>Yes</td>
+      <td>Unique special order reference descriptor</td>
+      <td>103495</td>
+    </tr>
+    <tr>
+      <td><strong>shopper_id</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>Yes</td>
+      <td>Shopper who placed the order</td>
+      <td>SHOPPER-1</td>
+    </tr>
+    <tr>
+      <td><strong>store_id</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>Yes</td>
+      <td>Store where order was placed</td>
+      <td>STORE-1</td>
+    </tr>
+    <tr>
+      <td><strong>sales_associate_id</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>Yes</td>
+      <td>Sales associate responsible for the order</td>
+      <td>SALES_ASSOCIATE-1</td>
+    </tr>
+    <tr>
+      <td><strong>description</strong></td>
+      <td>Alphanumeric</td>
+      <td>65535</td>
+      <td>No</td>
+      <td>Detailed description for order</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong>total_amount</strong></td>
+      <td>Numeric</td>
+      <td>1-255</td>
+      <td>No</td>
+      <td>Total order amount</td>
+      <td>456.39</td>
+    </tr>
+    <tr>
+      <td><strong>currency_code</strong></td>
+      <td>Alphanumeric</td>
+      <td>3</td>
+      <td>Yes (when total amount present)</td>
+      <td>Currency</td>
+      <td>USD</td>
+    </tr>
+    <tr>
+      <td><strong>created_at</strong></td>
+      <td>Datetime ISO 8601</td>
+      <td>10</td>
+      <td>Yes</td>
+      <td>Date and time the order occurred</td>
+      <td>2022-01-17T19:23:22Z</td>
+    </tr>
+    <tr>
+      <td><strong>type</strong></td>
+      <td>Enum [back_order | custom | repair]</td>
+      <td></td>
+      <td>Yes</td>
+      <td>Determine what type of special order this is</td>
+      <td>repair</td>
+    </tr>
+    <tr>
+      <td><strong>status</strong></td>
+      <td>Enum [open | closed | partial | cancelled]</td>
+      <td></td>
+      <td>Yes</td>
+      <td>Status of the order</td>
+      <td>open</td>
+    </tr>
+  </tbody>
+</table>
+
+### Special Order Type
+
+Type allows filtering of special orders in the UI.
+
+| Type | Description |
+|------|-------------|
+| **custom** | Represent a custom made product order |
+| **repair** | The order is tracking a repair on a previously purchased item |
+| **back_order** | Order for a product that is temporarily out of stock |
+
+### Special Order Status
+
+Determine what state the order is in.
+
+| Status | Description |
+|--------|-------------|
+| **open** | All line items are waiting to be fulfilled |
+| **partial** | Some line items have been fulfilled |
+| **closed** | Order is completed |
+| **cancelled** | Order has been cancelled |
+

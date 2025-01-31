@@ -62,18 +62,27 @@ To import similar file types on the same day, timestamps must be different so th
 
 
 ### Pipelining
-Imported file can have dependencies on each other. For example data imported in a SALE file references data imported in a SHOPPER file (as each SALE row need to correspond to some SHOPPER row). BSPK guarantees that files will be imported in sequence (first in, first out), but the following file type order need to be respected to prevent dependencies issues:
+Imported file can have dependencies on each other. For example data imported in a `SALE` file references data imported in a `SHOPPER` file (as each `SALE` row need to correspond to some `SHOPPER` row). BSPK guarantees that files will be imported in sequence (first in, first out), but the following file type order need to be respected to prevent dependencies issues:
 
-`STORE-REGION`
-`STORE`
-`SALES-ASSOCIATE`
-`SHOPPER`
-`PRODUCT`
-`PRODUCT-VARIANTS`
-`PRODUCT-PRICES`
-`PRODUCT-INVENTORY`
-`PRODUCT-IMAGES`
-`SALE`
+1 - `STORE-REGION`
+
+2 - `STORE`
+
+3 - `SALES-ASSOCIATE`
+
+4 - `SHOPPER`
+
+5 - `PRODUCT`
+
+6 - `PRODUCT-VARIANTS`
+
+7 - `PRODUCT-PRICES`
+
+8 - `PRODUCT-INVENTORY`
+
+9 - `PRODUCT-IMAGES`
+
+10 - `SALE`
 
 ### Reset non-required attributes
 Some imports have attributes that are not required (the “Required” column says “No”). Importing blank values will reset those attributes. For example if a `SHOPPER` file is imported with the following values:

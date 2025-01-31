@@ -2,7 +2,7 @@
 title: Rate limiting
 ---
 
-All API calls are limited to `30` requests every `10` seconds. Once this limit has been reached, calls will return and error with status code 429. This rate limit is evaluated on a rolling window basis.
+All API calls are limited to `30` requests every `10` seconds. Once this limit has been reached, calls will return and error with status code `429`. This rate limit is evaluated on a rolling window basis.
 
 API requests are limited to the amount specified in the returned `X-RateLimit-Limit` header (per 10 seconds). Exceeding that limit will cause BSPK to return an `HTTP 429` response. Check the `X-RateLimit-Limit` and `X-RateLimit-Remaining` headers to see how many more requests you are allowed until throttling kicks in.
 

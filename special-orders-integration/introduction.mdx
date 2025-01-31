@@ -1,0 +1,44 @@
+---
+title: Introduction
+---
+
+This guide describes the details necessary for integrating special order flow into BSPK. Special orders can be used to track after-sale care like repairs or special order of a custom product.
+
+### Importing Data 
+
+The import process is achieved via exchange of data in CSV files. Files are deposited into a secure S3 bucket which trigger instant processing. The mechanism is meant to be a machine-to-machine exchange, where a reference system like a POS or ERP periodically export data to keep BSPK platform in sync.
+
+This method presents several benefits:
+- ETL (Extract, Transform, Load) is a common process for data exchange between systems and will be familiar to system integrators.
+- It performs at any scale. Initial data ingestion of millions of records is handled in the same way as an incremental change in a single record.
+- It’s asynchronous and fault tolerant.
+
+Data files are broken down in discreet types. This reduces sending redundant data and clarify the behavior of each operation. Files can contain incremental changes or full data set. Each time a file is processed, the underlying data is created if new or updated its reference exists already.
+
+<Check>
+  Full data set are useful when initially importing historical data. Once that’s achieved, it is preferable to only send delta files for optimal processing efficiency. Relational data dependency is guaranteed by processing files sequentially in the proper order.
+</Check>
+
+<Info>
+  Data import into BSPK is performed in real-time. New files are detected and processed immediately. Sub-minute latency can be achieved if constant data synchronization is necessary or desired.
+</Info>
+
+### Prerequisites for Imports 
+
+#### File Type
+
+Files should be UTF-8 encoded comma delimited text files.
+
+#### Naming Conventions
+
+`TYPE_VERSION_CompanyName_YYYYMMDDHHMM.csv` where:
+
+`TYPE` is the type of data imported. Valid types are `SPECIAL-ORDERS`, `SPECIAL-ORDER-LINE-ITEMS`, `SPECIAL-ORDER-EVENTS`
+
+`CompanyName` is CamelCase name of company.
+
+`YYYYMMDDHHMM` timestamp on when file is created.
+
+`VERSION` is the file format version, current version is `V2`
+
+To import similar file types on the same day, timestamps must be different so the system can trigger the next import. Files with a unique name are only imported once.

@@ -21,7 +21,7 @@
   },
   "topbarLinks": [
     {
-      "name": "Support",
+      "name": "Get Support",
       "url": "mailto:hi@mintlify.com"
     }
   ],
@@ -37,12 +37,7 @@
   ],
   "anchors": [
     {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
-    },
-    {
-      "name": "Support",
+      "name": "Get Support",
       "icon": "slack",
       "url": "https://mintlify.com/community"
     }
@@ -51,9 +46,10 @@
     {
       "group": "Get Started",
       "pages": [
-        "overview",
+        "welcome",
         "cloud-enabled-saas-platform",
         "data-security-and-privacy",
+        "systems-architecture",
         "integration-with-bspk"
       ]
     },
@@ -85,14 +81,24 @@
       ]
     },
     {
-      "group": "Essentials",
+      "group": "Special Orders Integration Guide",
       "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
+        "special-orders-integration/introduction",
+        {
+          "group": "Import Files Specs",
+          "pages": [
+            "special-orders-integration/sample-files",
+            "special-orders-integration/file-types/special-orders",
+            "special-orders-integration/file-types/special-order-line-items",
+            "special-orders-integration/file-types/special-order-events"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "S3 Bucket Configuration",
+      "pages": [
+        "s3-bucket-configuration"
       ]
     },
     {
@@ -110,93 +116,95 @@
     {
       "group": "Platform API",
       "pages": [
+        "api-reference/platform-api/introduction",
         {
           "group": "Clients",
           "pages": [
-            "api-reference/endpoint/platform-api/clients/creates-or-updates-a-client-shopper-in-bspk",
-            "api-reference/endpoint/platform-api/clients/merges-a-client-to-another-client",
-            "api-reference/endpoint/platform-api/clients/links-a-bspk-client-with-a-client-in-an-external-backend-system",
-            "api-reference/endpoint/platform-api/clients/removes-the-link-from-a-bspk-client-with-a-client-in-an-external-backend-system"
+            "api-reference/platform-api/endpoints/clients/creates-or-updates-a-client-shopper-in-bspk",
+            "api-reference/platform-api/endpoints/clients/merges-a-client-to-another-client",
+            "api-reference/platform-api/endpoints/clients/links-a-bspk-client-with-a-client-in-an-external-backend-system",
+            "api-reference/platform-api/endpoints/clients/removes-the-link-from-a-bspk-client-with-a-client-in-an-external-backend-system"
           ]
         },
         {
           "group": "Sales",
           "pages": [
-            "api-reference/endpoint/platform-api/sales/creates-or-updates-a-sale-in-bspk"
+            "api-reference/platform-api/endpoints/sales/creates-or-updates-a-sale-in-bspk"
           ]
         },
         {
           "group": "Webhooks",
           "pages": [
-            "api-reference/endpoint/platform-api/webhooks/creates-a-webhook-endpoint",
-            "api-reference/endpoint/platform-api/webhooks/delete-a-webhook-endpoint",
-            "api-reference/endpoint/platform-api/webhooks/updates-a-webhook-endpoint",
-            "api-reference/endpoint/platform-api/webhooks/list-webhook-endpoints"
+            "api-reference/platform-api/endpoints/webhooks/creates-a-webhook-endpoint",
+            "api-reference/platform-api/endpoints/webhooks/delete-a-webhook-endpoint",
+            "api-reference/platform-api/endpoints/webhooks/updates-a-webhook-endpoint",
+            "api-reference/platform-api/endpoints/webhooks/list-webhook-endpoints"
           ]
-        }    
+        }
       ]
     },
     {
       "group": "Extraction API",
       "pages": [
+        "api-reference/extraction-api/introduction",
         {
           "group": "Appointments",
           "pages": [
-            "api-reference/endpoint/extraction-api/appointments/list-appointments"
+            "api-reference/extraction-api/endpoints/appointments/list-appointments"
           ]
         },
         {
           "group": "Calls",
           "pages": [
-            "api-reference/endpoint/extraction-api/calls/list-calls"
+            "api-reference/extraction-api/endpoints/calls/list-calls"
           ]
         },
         {
           "group": "Clients",
           "pages": [
-            "api-reference/endpoint/extraction-api/clients/list-clients"
+            "api-reference/extraction-api/endpoints/clients/list-clients"
           ]
         },
         {
           "group": "Emails",
           "pages": [
-            "api-reference/endpoint/extraction-api/emails/list-emails"
+            "api-reference/extraction-api/endpoints/emails/list-emails"
           ]
         },
         {
           "group": "Ideabook",
           "pages": [
-            "api-reference/endpoint/extraction-api/ideabook/get-clients-ideabook-actions-likes-dislikes-wishlists"
+            "api-reference/extraction-api/endpoints/ideabook/get-clients-ideabook-actions-likes-dislikes-wishlists"
           ]
         },
         {
           "group": "Messages",
           "pages": [
-            "api-reference/endpoint/extraction-api/messages/list-messages"
+            "api-reference/extraction-api/endpoints/messages/list-messages"
           ]
         },
         {
           "group": "Notes",
           "pages": [
-            "api-reference/endpoint/extraction-api/notes/list-notes"
+            "api-reference/extraction-api/endpoints/notes/list-notes"
           ]
         },
         {
           "group": "Reminders",
           "pages": [
-            "api-reference/endpoint/extraction-api/reminders/list-reminders"
+            "api-reference/extraction-api/endpoints/reminders/list-reminders"
           ]
         },
         {
           "group": "Sales Associates",
           "pages": [
-            "api-reference/endpoint/extraction-api/sales-associates/list-sales-associates"
+            "api-reference/extraction-api/endpoints/sales-associates/list-sales-associates"
           ]
         },
         {
           "group": "Slices",
           "pages": [
-            "api-reference/endpoint/extraction-api/slices/list-slices"
+            "api-reference/extraction-api/endpoints/slices/list-slices"
           ]
         }
       ]

@@ -1,0 +1,120 @@
+{
+	"info": {
+		"_postman_id": "e7aa6514-4678-4372-aa6d-e7c5fa01405c",
+		"name": "BSPK S3 Keys requests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3015581"
+	},
+	"item": [
+		{
+			"name": "File upload",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "file",
+					"file": {
+						"src": "postman-test-file.txt"
+					}
+				},
+				"url": {
+					"raw": "{{s3_bucket_name}}.s3.us-west-2.amazonaws.com/postman-test-file.txt",
+					"host": [
+						"{{s3_bucket_name}}",
+						"s3",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"postman-test-file.txt"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List files",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{s3_bucket_name}}.s3.us-west-2.amazonaws.com/",
+					"host": [
+						"{{s3_bucket_name}}",
+						"s3",
+						"us-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "awsv4",
+		"awsv4": [
+			{
+				"key": "service",
+				"value": "s3",
+				"type": "string"
+			},
+			{
+				"key": "region",
+				"value": "us-west-2",
+				"type": "string"
+			},
+			{
+				"key": "secretKey",
+				"value": "{{secret_key_value}}",
+				"type": "string"
+			},
+			{
+				"key": "accessKey",
+				"value": "{{access_key_id}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "s3_bucket_name",
+			"value": "please fill",
+			"type": "string"
+		},
+		{
+			"key": "access_key_id",
+			"value": "please fill",
+			"type": "string"
+		},
+		{
+			"key": "secret_key_value",
+			"value": "please fill",
+			"type": "string"
+		}
+	]
+}

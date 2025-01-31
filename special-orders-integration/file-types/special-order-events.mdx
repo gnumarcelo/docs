@@ -1,0 +1,107 @@
+---
+title: Special Order Events
+---
+
+<table>
+  <tbody>
+    <tr>
+      <td>File Prefix</td>
+      <td>
+        <code>SPECIAL-ORDER-EVENTS</code>
+      </td>
+    </tr>
+    <tr>
+      <td>Current Version</td>
+      <td>
+        <code>V2</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+Special order events represent the various states the order goes through before it's finalized. They are mostly provided as historical view, but in some cases can trigger an alert for user intervention.
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Attribute</strong></td>
+      <td><strong>Format</strong></td>
+      <td><strong>Length</strong></td>
+      <td><strong>Required</strong></td>
+      <td><strong>Description</strong></td>
+      <td><strong>Example</strong></td>
+    </tr>
+    <tr>
+      <td><strong>order_ref</strong></td>
+      <td>Alphanumeric</td>
+      <td>3-255</td>
+      <td>Yes</td>
+      <td>Order reference descriptor</td>
+      <td>103495</td>
+    </tr>
+    <tr>
+      <td><strong>line_item_ref</strong></td>
+      <td>Alphanumeric</td>
+      <td>3-255</td>
+      <td>Yes</td>
+      <td>Order line item descriptor</td>
+      <td>103495-1</td>
+    </tr>
+    <tr>
+      <td><strong>sequence</strong></td>
+      <td>Numeric</td>
+      <td>1-3</td>
+      <td>Yes</td>
+      <td>Position of event for this order. It is unique within a given order, e.g. there can't be two events with the same sequence and order_ref</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td><strong>description</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>Yes</td>
+      <td>Short description of event</td>
+      <td>Sent to fabrication</td>
+    </tr>
+    <tr>
+      <td><strong>created_at</strong></td>
+      <td>Datetime ISO 8601</td>
+      <td>10</td>
+      <td>Yes</td>
+      <td>Date and time the event occurred</td>
+      <td>2022-01-17T19:23:22Z</td>
+    </tr>
+    <tr>
+      <td><strong>reference</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-65535</td>
+      <td>No</td>
+      <td>General purpose reference. For example could be a shipping tracking number. If a URL is provided, it will be displayed as a link that can be opened on tap.</td>
+      <td>IB01T/38259</td>
+    </tr>
+    <tr>
+      <td><strong>action_required</strong></td>
+      <td>Boolean [TRUE|FALSE]</td>
+      <td></td>
+      <td>Yes</td>
+      <td>Determine if this event requires human intervention. The sales associate for this order will be alerted.</td>
+      <td>TRUE</td>
+    </tr>
+  </tbody>
+</table>
+
+### Notes
+
+The `action_required` field will only trigger a visible action if this is set to TRUE for the last event in the sequence.
+
+For example:
+
+| Sequence | Description | action_required | Application Behavior |
+|----------|-------------|-----------------|---------------------|
+| 3 | Sent to boutique | FALSE | Nothing |
+| 4 | Received at boutique | TRUE | This event and the special order will be surfaced to the sales associate to take next steps |
+| 5 | Delivered to client | FALSE | This event will cause any notification or alerts to be removed for the sales associate |
+
+### Event Processing Rules
+
+Special order events are append-only data. Previously sent events can't be updated or deleted. If an event for an order has already been imported, future events with the same `sequence` and `order_ref` will be ignored.

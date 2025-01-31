@@ -1,0 +1,143 @@
+---
+title: Special Order Line Items
+---
+
+<table>
+  <tbody>
+    <tr>
+      <td>File Prefix</td>
+      <td>
+        <code>SPECIAL-ORDER-LINE-ITEMS</code>
+      </td>
+    </tr>
+    <tr>
+      <td>Current Version</td>
+      <td>
+        <code>V2</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+Special Order Line Items data represent each product line item for this order. In case of a repair, the line item can represent the service purchased, not a product.
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Attribute</strong></td>
+      <td><strong>Format</strong></td>
+      <td><strong>Length</strong></td>
+      <td><strong>Required</strong></td>
+      <td><strong>Description</strong></td>
+      <td><strong>Example</strong></td>
+    </tr>
+    <tr>
+      <td><strong>order_ref</strong></td>
+      <td>Alphanumeric</td>
+      <td>3-255</td>
+      <td>Yes</td>
+      <td>Unique special order reference descriptor</td>
+      <td>103495</td>
+    </tr>
+    <tr>
+      <td><strong>line_item_ref</strong></td>
+      <td>Alphanumeric</td>
+      <td>3-255</td>
+      <td>Yes</td>
+      <td>Unique reference for this line item</td>
+      <td>103495-1</td>
+    </tr>
+    <tr>
+      <td><strong>product_ref</strong></td>
+      <td>Alphanumeric</td>
+      <td>3-255</td>
+      <td>No</td>
+      <td>Unique product or service reference</td>
+      <td>BK345</td>
+    </tr>
+    <tr>
+      <td><strong>sku</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>No</td>
+      <td>SKU of product variant</td>
+      <td>B01N54LF</td>
+    </tr>
+    <tr>
+      <td><strong>barcode</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>No</td>
+      <td>Barcode (UPC, EAN, ISBN, etc.)</td>
+      <td>03600291452</td>
+    </tr>
+    <tr>
+      <td><strong>name</strong></td>
+      <td>Alphanumeric</td>
+      <td>1-255</td>
+      <td>Yes</td>
+      <td>Line item title</td>
+      <td>Custom Goat Skin Gloves</td>
+    </tr>
+    <tr>
+      <td><strong>description</strong></td>
+      <td>Alphanumeric</td>
+      <td>65535</td>
+      <td>No</td>
+      <td>Detailed description</td>
+      <td>The smoothest leather west of the Himalayas.</td>
+    </tr>
+    <tr>
+      <td><strong>image_url</strong></td>
+      <td>URL</td>
+      <td>65535</td>
+      <td>No</td>
+      <td>Image URL. JPG or PNG</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><strong>quantity</strong></td>
+      <td>Numeric</td>
+      <td>1-255</td>
+      <td>Yes</td>
+      <td>Quantity</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td><strong>price</strong></td>
+      <td>Numeric</td>
+      <td>1-255</td>
+      <td>No</td>
+      <td>Price per item</td>
+      <td>456.39</td>
+    </tr>
+    <tr>
+      <td><strong>currency_code</strong></td>
+      <td>Alphanumeric</td>
+      <td>3</td>
+      <td>Yes (when price is present)</td>
+      <td>Currency</td>
+      <td>USD</td>
+    </tr>
+    <tr>
+      <td><strong>status</strong></td>
+      <td>Enum [open | closed | partial | cancelled]</td>
+      <td></td>
+      <td>Yes</td>
+      <td>Fulfillment status of this line item</td>
+      <td>open</td>
+    </tr>
+  </tbody>
+</table>
+
+### Line Item Status
+
+The status field indicates the fulfillment state of the individual line item:
+
+| Status | Description |
+|--------|-------------|
+| open | Line item is waiting to be fulfilled |
+| closed | Line item has been fulfilled |
+| partial | Line item has been partially fulfilled |
+| cancelled | Line item has been cancelled |
+
