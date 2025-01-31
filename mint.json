@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "BSPK Developer Portal",
+  "name": "BSPK Developers Portal",
   "logo": {
     "dark": "/logo/dark.png",
     "light": "/logo/light.svg"
@@ -22,7 +22,7 @@
   "topbarLinks": [
     {
       "name": "Get Support",
-      "url": "mailto:hi@mintlify.com"
+      "url": "mailto:support@bspk.com"
     }
   ],
   "topbarCtaButton": {
@@ -38,8 +38,8 @@
   "anchors": [
     {
       "name": "Get Support",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
+      "icon": "envelope",
+      "url": "mailto:support@bspk.com"
     }
   ],
   "navigation": [
